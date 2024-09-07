@@ -2,7 +2,7 @@
   description = "moto-music-sync.py -- Sync music from Apple music playlist to Android device with adb";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     mach-nix.url = "github:DavHau/mach-nix";
   };
@@ -19,22 +19,20 @@
           requirements-as-text = builtins.readFile requirements-txt;
 
           # python version
-          python="python312";
+          #python="python310";
 
           # python environment
           mypython =
             mach-nix.lib."${system}".mkPython {
-              inherit python;
               requirements = builtins.readFile requirements-txt;
             };
 
           mydevpython =
             mach-nix.lib."${system}".mkPython {
-              inherit python;
               requirements = requirements-as-text +  ''
 pip
 python-lsp-server[all]
-rich-cli
+rich
 mypy
 '';
             };
