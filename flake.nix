@@ -66,7 +66,7 @@ mypy
             #                       package                                   #
             ###################################################################
             packages = {
-              currency-exchange = stdenv.mkDerivation {
+              moto-sync = stdenv.mkDerivation {
                 name= "${package-name}";
                 src = ./.;
 
